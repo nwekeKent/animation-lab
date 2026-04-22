@@ -5,7 +5,16 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin",
+      },
+    ],
     "paths": {
       "@/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
