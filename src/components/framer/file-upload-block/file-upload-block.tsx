@@ -1,17 +1,16 @@
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  CloudUploadIcon,
+  Delete02Icon,
+  Cancel01Icon,
+  CheckmarkCircle01Icon,
+  BadgeInfoIcon,
+  FileEmpty02Icon,
+  Link04Icon,
+  Loading03Icon,
+} from "@hugeicons/core-free-icons";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  CloudArrowUpIcon,
-  FilePdfIcon,
-  FileDocIcon,
-  FileImageIcon,
-  XIcon,
-  CheckCircleIcon,
-  TrashIcon,
-  LinkIcon,
-  InfoIcon,
-  SpinnerIcon,
-} from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
 interface UploadingFile {
@@ -82,18 +81,12 @@ export const FileUploadBlock = () => {
     switch (extension) {
       case "pdf":
         return {
-          icon: (
-            <FilePdfIcon size={44} weight="duotone" className="text-red-500" />
-          ),
           label: "PDF",
           color: "bg-red-500",
         };
       case "doc":
       case "docx":
         return {
-          icon: (
-            <FileDocIcon size={44} weight="duotone" className="text-blue-500" />
-          ),
           label: "DOC",
           color: "bg-blue-500",
         };
@@ -102,21 +95,11 @@ export const FileUploadBlock = () => {
       case "jpeg":
       case "webp":
         return {
-          icon: (
-            <FileImageIcon
-              size={44}
-              weight="duotone"
-              className="text-purple-500"
-            />
-          ),
           label: "IMG",
-          color: "bg-purple-500",
+          color: "bg-green-500",
         };
       default:
         return {
-          icon: (
-            <FilePdfIcon size={44} weight="duotone" className="text-gray-500" />
-          ),
           label: "FILE",
           color: "bg-gray-500",
         };
@@ -135,7 +118,7 @@ export const FileUploadBlock = () => {
         <div className="flex items-center justify-between p-6 border-b border-[#EBEBEB] shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600">
-              <CloudArrowUpIcon size={24} />
+              <HugeiconsIcon icon={CloudUploadIcon} size={24} />
             </div>
             <div>
               <h2 className="text-lg font-semibold text-gray-900">
@@ -147,7 +130,7 @@ export const FileUploadBlock = () => {
             </div>
           </div>
           <button className="text-gray-400 hover:text-gray-600">
-            <XIcon size={20} weight="bold" />
+            <HugeiconsIcon icon={Cancel01Icon} size={20} />
           </button>
         </div>
 
@@ -178,7 +161,7 @@ export const FileUploadBlock = () => {
             )}
           >
             <motion.div layout className="text-gray-600 mb-4">
-              <CloudArrowUpIcon size={32} />
+              <HugeiconsIcon icon={CloudUploadIcon} size={32} />
             </motion.div>
             <motion.p layout className="text-base font-semibold text-gray-900">
               Choose a file or drag & drop it here.
@@ -207,7 +190,7 @@ export const FileUploadBlock = () => {
           <div className="flex flex-col">
             <AnimatePresence initial={false} mode="popLayout">
               {files.map((file) => {
-                const { icon, label, color } = getFileIcon(file.name);
+                const { label, color } = getFileIcon(file.name);
                 return (
                   <motion.div
                     key={file.id}
@@ -228,10 +211,15 @@ export const FileUploadBlock = () => {
                   >
                     <div className="flex items-start gap-4">
                       <div className="relative shrink-0">
-                        {icon}
+                        <HugeiconsIcon
+                          icon={FileEmpty02Icon}
+                          size={60}
+                          className="text-[#DCDCDC]"
+                          strokeWidth={0.7}
+                        />
                         <div
                           className={cn(
-                            "absolute bottom-2 left-1/2 -translate-x-1/2 text-[8px] font-bold text-white px-1 rounded-sm",
+                            "absolute bottom-3 left-3.75 -translate-x-1/2 text-[12px] font-light text-white px-1 rounded-sm",
                             color,
                           )}
                         >
@@ -248,9 +236,9 @@ export const FileUploadBlock = () => {
                             className="text-gray-400 hover:text-red-500 transition-colors"
                           >
                             {file.status === "uploading" ? (
-                              <XIcon size={18} />
+                              <HugeiconsIcon icon={Cancel01Icon} size={18} />
                             ) : (
-                              <TrashIcon size={18} />
+                              <HugeiconsIcon icon={Delete02Icon} size={18} />
                             )}
                           </button>
                         </div>
@@ -263,7 +251,8 @@ export const FileUploadBlock = () => {
                           <div className="flex items-center gap-1.5">
                             {file.status === "uploading" ? (
                               <>
-                                <SpinnerIcon
+                                <HugeiconsIcon
+                                  icon={Loading03Icon}
                                   size={14}
                                   className="animate-spin text-blue-500"
                                 />
@@ -273,9 +262,9 @@ export const FileUploadBlock = () => {
                               </>
                             ) : (
                               <>
-                                <CheckCircleIcon
+                                <HugeiconsIcon
+                                  icon={CheckmarkCircle01Icon}
                                   size={14}
-                                  weight="fill"
                                   className="text-green-500"
                                 />
                                 <span className="text-gray-600">Completed</span>
@@ -306,7 +295,7 @@ export const FileUploadBlock = () => {
           {/* Separator */}
           <motion.div layout className="flex items-center gap-4 shrink-0">
             <div className="flex-1 h-px bg-[#EBEBEB]" />
-            <span className="text-[10px] font-bold text-gray-400 tracking-widest uppercase">
+            <span className="text-xs  text-gray-400 tracking-widest uppercase">
               OR
             </span>
             <div className="flex-1 h-px bg-[#EBEBEB]" />
@@ -318,15 +307,20 @@ export const FileUploadBlock = () => {
               <span className="text-sm font-semibold text-gray-900">
                 Import from URL Link
               </span>
-              <InfoIcon size={14} className="text-gray-300" weight="fill" />
+              <HugeiconsIcon
+                icon={BadgeInfoIcon}
+                size={14}
+                className="text-gray-300"
+              />
             </div>
             <div className="relative">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                <LinkIcon size={20} />
+                <HugeiconsIcon icon={Link04Icon} size={20}  />
               </div>
               <input
                 type="text"
                 placeholder="Paste file URL"
+                disabled
                 className="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
               />
             </div>

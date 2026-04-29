@@ -1,11 +1,12 @@
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  CloudDownloadIcon,
+  FolderExportIcon,
+  Add01Icon,
+  Share04Icon,
+} from "@hugeicons/core-free-icons";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  PlusIcon,
-  ShareIcon,
-  ExportIcon,
-  CloudArrowDownIcon,
-} from "@phosphor-icons/react";
 import { motion, stagger, type Variants } from "motion/react";
 
 type idType = "share" | "export" | "download";
@@ -18,15 +19,15 @@ interface ButtonOption {
 const floatingButtons: ButtonOption[] = [
   {
     id: "share",
-    icon: <ShareIcon size={32} />,
+    icon: <HugeiconsIcon icon={Share04Icon} size={32} />,
   },
   {
     id: "export",
-    icon: <ExportIcon size={32} />,
+    icon: <HugeiconsIcon icon={FolderExportIcon} size={32} />,
   },
   {
     id: "download",
-    icon: <CloudArrowDownIcon size={32} />,
+    icon: <HugeiconsIcon icon={CloudDownloadIcon} size={32} />,
   },
 ];
 
@@ -104,7 +105,7 @@ export const ButtonWithOptions = () => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <motion.span animate={{ rotate: isOpen ? 45 : 0 }}>
-          <PlusIcon size={32} />
+          <HugeiconsIcon icon={Add01Icon} size={32} />
         </motion.span>
       </button>
     </motion.div>
