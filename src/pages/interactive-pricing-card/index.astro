@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { PricingCard } from "@/components/framer/interactive-pricing-card/pricing-card";
+---
+
+<Layout title="Pricing Card">
+    <main class="min-h-screen bg-[#BBB] flex items-center justify-center p-8">
+        <PricingCard client:load />
+    </main>
+</Layout>
