@@ -1,4 +1,7 @@
-export const map = (x, a, b, c, d) => ((x - a) * (d - c)) / (b - a) + c;
+export const map = (x, a, b, c, d) => {
+  if (a === b) return c;
+  return ((x - a) * (d - c)) / (b - a) + c;
+};
 
 export const lerp = (a, b, n) => (1 - n) * a + n * b;
 
@@ -6,6 +9,8 @@ export const clamp = (num, min, max) =>
   num <= min ? min : num >= max ? max : num;
 
 export const getDistanceFromMidViewport = (element) => {
+  if (typeof window === "undefined" || !element) return { x: 0, y: 0 };
+
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const { x, y, width, height } = element.getBoundingClientRect();
