@@ -13,6 +13,31 @@ const { title } = Astro.props;
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <!--
+            Embed mode: inside an iframe (e.g. the portfolio's Explorations
+            page) or with ?embed in the URL, hide the lab's own menu so only
+            the exploration shows. Runs before paint to avoid a flash.
+        -->
+        <script is:inline>
+            (() => {
+                let framed = false;
+                try {
+                    framed = window.self !== window.top;
+                } catch {
+                    framed = true;
+                }
+                if (framed || new URLSearchParams(location.search).has("embed")) {
+                    document.documentElement.classList.add("embed");
+                }
+            })();
+        </script>
+        <style is:inline>
+            html.embed .menu-trigger,
+            html.embed .menu-backdrop,
+            html.embed .exploration-drawer {
+                display: none !important;
+            }
+        </style>
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
