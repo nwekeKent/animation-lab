@@ -11,4 +11,8 @@ export const explorations = [
     title: "Pricing Card",
     path: "/interactive-pricing-card/",
   },
+  {
+    title: "AVST Loader",
+    path: "/avst-loader/",
+  },
 ] as const;
